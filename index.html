@@ -3,6 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Browser Redirect</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #222; /* 浅黑背景 */
+            color: #fff; /* 提示文字颜色 */
+            font-family: Arial, sans-serif;
+            flex-direction: column;
+            text-align: center;
+        }
+        img {
+            max-width: 80%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
     <script>
@@ -34,11 +53,15 @@
             const redirectUrl = token ? `${targetUrl}?token=${encodeURIComponent(token)}` : targetUrl;
             window.location.href = redirectUrl;
         } else {
-            // iPhone + non-Safari: display image
+            // iPhone + non-Safari: display image with tip
             const img = document.createElement('img');
             img.src = 'tip.png';
             img.alt = 'This image is displayed because your browser is not Safari.';
             document.body.appendChild(img);
+
+            const tip = document.createElement('p');
+            tip.textContent = 'Tip: Safari is required to view the special content.';
+            document.body.appendChild(tip);
         }
     </script>
 </body>

@@ -1,1 +1,37 @@
-hello world
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Browser Redirect</title>
+</head>
+<body>
+    <script>
+        // 判断是否 Safari 浏览器
+        function isSafari() {
+            const ua = navigator.userAgent;
+            return /^((?!chrome|android).)*safari/i.test(ua);
+        }
+
+        // 获取 URL 参数
+        function getQueryParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        const token = getQueryParam('token'); // 获取 token 参数
+        const url_a = 'https://example.com';  // 替换为目标 URL
+
+        if (isSafari()) {
+            // 如果是 Safari，跳转到 url_a 并拼接 token
+            const redirectUrl = token ? `${url_a}?token=${encodeURIComponent(token)}` : url_a;
+            window.location.href = redirectUrl;
+        } else {
+            // 不是 Safari，显示图片
+            const img = document.createElement('img');
+            img.src = 'tip.png';
+            img.alt = 'Image';
+            document.body.appendChild(img);
+        }
+    </script>
+</body>
+</html>

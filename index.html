@@ -49,8 +49,9 @@
             // Not iPhone, redirect to 404 page
             window.location.href = 'https://gitleap.github.io/404.html';
         } else if (isSafari()) {
-            // iPhone + Safari: redirect to targetUrl with token
-            const redirectUrl = token ? `${targetUrl}?token=${encodeURIComponent(token)}` : targetUrl;
+            // iPhone + Safari: redirect to targetUrl
+            const query = window.location.search;
+            const redirectUrl = `${targetUrl}${query}`;
             window.location.href = redirectUrl;
         } else {
             // iPhone + non-Safari: display image with tip

